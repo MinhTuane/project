@@ -6,13 +6,11 @@ import java.util.List;
 import Builder.DoctorBuilder;
 import Model.Doctor;
 import Model.Patient;
-import Model.StoreUser;
 import Service.DoctorService;
 import Service.servicelmpl.DoctorServiceImpl;
 
 public class DoctorConcreteBuilder implements DoctorBuilder {
     private String doctorID;
-    private StoreUser stu;
     private String name;
     private String email;
     private String password;
@@ -67,7 +65,6 @@ public class DoctorConcreteBuilder implements DoctorBuilder {
 
     @Override
     public Doctor build() {
-       stu.addList(new StoreUser(true,this.doctorID, email, password));
        Doctor a=new Doctor(name, email, password, phone, address, doctorID, patients);
        this.listDoctor.add(a);
         return a;

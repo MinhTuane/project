@@ -15,4 +15,6 @@ public interface DoctorService {
     void saveDoctor(Doctor doctor);
 
     void deleteById(String doctorID);
+    
+    Doctor login(String email,String password);
 }

@@ -4,7 +4,8 @@
  */
 package Page;
 
-import Model.StoreUser;
+import Function.FuctionExecute.LoginExecute;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -14,7 +15,7 @@ import javax.swing.JTextField;
  * @author penta
  */
 public class Login extends javax.swing.JFrame {
-    private StoreUser stu;
+    private LoginExecute loginExc;
     /**
      * Creates new form Login
      */
@@ -106,7 +107,7 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginBtnMouseClicked
-       if(!stu.login(this.usernameTxt.getText(), this.passwordTxt.getText())){
+       if(!loginExc.LoginSuccess(this.usernameTxt.getText(), this.passwordTxt.getText())){
            JOptionPane.showMessageDialog(rootPane,"Email or Password is uncorrect!");
        }else{
            this.setVisible(false);

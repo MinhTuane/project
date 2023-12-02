@@ -16,4 +16,5 @@ public interface PatientService {
     void savePatient(Patient patient);
 
     void deleteById(String patientID);
+    Patient login(String email,String password);
 }

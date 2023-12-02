@@ -8,7 +8,7 @@ import Builder.PatientBuilder;
 import Model.Doctor;
 import Model.Patient;
 import Model.Status;
-import Model.StoreUser;
+
 import Service.PatientService;
 import Service.servicelmpl.PatientServiceImpl;
 
@@ -16,7 +16,9 @@ public class PatientConcreteBuilder implements PatientBuilder {
     private String patientID;
     private String name;
     private String email;
-    private StoreUser stu;
+
+    private double fee;
+    private Status status;
     private String password;
     private String phone;
     private String address;
@@ -85,8 +87,7 @@ public class PatientConcreteBuilder implements PatientBuilder {
 
     @Override
     public Patient build() {
-        stu.addList(new StoreUser(false,this.patientID ,email, password));
-        Patient a=new Patient(name, email, password, phone, address, patientID, statusID, age, dob, doctors);
+        Patient a= new Patient(name, email, password, phone, address, patientID, status, age, dob, fee);
         this.listPatient.add(a);
         return a;
     }
