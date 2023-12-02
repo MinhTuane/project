@@ -10,9 +10,10 @@ import Service.DoctorService;
 import context.DBConnUtils;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class DoctorServiceImpl implements DoctorService {
-
+    private PatientServiceImpl ptService;
     private Connection con = new JDBCConnection().getConnect();
 
     @Override
@@ -29,8 +30,25 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<Patient> getAllPatientById(String doctorID) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllPatientById'");
+        List<Patient> listPatient = new ArrayList<>();
+        try {
+            con= DBConnUtils.getConnection();
+            String sql= "Select PatientID from PatientDoctor a where a.DoctorEmail=? ";
+            PreparedStatement pstm = con.prepareStatement(sql);
+            pstm.setString(1,doctorID);
+            
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()){
+                String patientID = rs.getString("PatientID");
+                Patient patient = ptService.findById(patientID);
+                listPatient.add(patient);
+            }
+            return listPatient;
+        } catch (Exception e) {
+        } finally {
+            DBConnUtils.closeConnection(con);
+        }
+        return null;
     }
 
     @Override
